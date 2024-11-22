@@ -1,0 +1,32 @@
+name: ci
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+jobs:
+  check-compilation:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          cache: npm
+      - run: npm install -g @dataform/cli
+      - run: dataform compile
+  check-format:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          cache: npm
+      - run: npm install -g @dataform/cli
+      - run: dataform format
+      - run: |
+          if [[ -n $(git ls-files -m) ]]; then
+            echo "There are modified files in the repository. Aborting."
+            exit 1
+          fi
