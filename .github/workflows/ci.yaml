@@ -23,6 +23,6 @@ jobs:
       - run: dataform format
       - run: |
           if [[ -n $(git ls-files -m) ]]; then
-            echo "There are modified files in the repository. Aborting."
+            echo "There are unformatted files in the repository. Aborting."
             exit 1
           fi
