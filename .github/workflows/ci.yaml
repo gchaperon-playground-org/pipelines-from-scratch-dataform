@@ -20,8 +20,10 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
       - run: npm install -g @dataform/cli
-      - run: dataform format
-      - run: |
+      - name: Attempt to format project 
+        run: dataform format
+      - name: Check for modified files
+        run: |
           if [[ -n $(git ls-files -m) ]]; then
             echo "There are unformatted files in the repository. Aborting."
             exit 1
