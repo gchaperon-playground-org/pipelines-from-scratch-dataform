@@ -1,5 +1,5 @@
 defaultProject: pipelines-from-scratch
 defaultLocation: US
-defaultDataset: dataform
+defaultDataset: pipelines_from_scratch
 defaultAssertionDataset: dataform_assertions
 dataformCoreVersion: 3.0.0
